@@ -1,0 +1,125 @@
+body {
+    /*Account for the height of the navbar component*/
+    padding-top: 3.5rem;
+}
+
+.worldwindow {
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    background-color: black;
+}
+
+.worldwindow-overlay {
+    position: absolute;
+    width: 100%;
+    top: 3.5rem;
+}
+
+/* Prevents an element, like a <div/> from consuming user input */
+.noninteractive {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    pointer-events: none;
+}
+
+/* Allows an element to receive user input */
+/* Useful if a parent element is using .noniteractive */
+.interactive {
+    -webkit-touch-callout: auto !important;
+    -webkit-user-select: auto !important;
+    -khtml-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+    -o-user-select: auto !important;
+    pointer-events: auto !important;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+#challenge-4{
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+#CharFat{
+    background: grey;
+    color: black;
+    width: 350px;
+    height: 400px;
+    overflow:auto;
+    left: 45%;
+    top: 45%;
+    display: none;
+    position: absolute;
+}
+#CharFatClose{
+    color: black;
+}
+#charFatPop{
+    position: absolute;
+    top: 55%;
+    left: 55%;
+    color: black;
+    z-index: auto;
+}
