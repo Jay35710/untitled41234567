@@ -245,7 +245,7 @@ define([
         WmtsCapabilities.assembleServiceMetadataURL = function (element) {
             var result = {};
 
-            var link = element.getAttribute("xlink:href");
+            var link = "http://10.11.90.16:9084/" + element.getAttribute("xlink:href");
             if (link) {
                 result.url = link;
             }

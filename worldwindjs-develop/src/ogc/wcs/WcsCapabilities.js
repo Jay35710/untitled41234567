@@ -311,7 +311,7 @@ define([
                 var child = children[c];
 
                 if (child.localName === "OnlineResource") {
-                    return child.getAttribute("xlink:href");
+                    return ("http://10.11.90.16:9084/" + child.getAttribute("xlink:href"));
                 }
             }
         };

@@ -233,11 +233,11 @@ requirejs(["./src/WorldWind"],  function(WorldWind) {
         category: "setting",
         enabled: false
     });
-    globe.addLayer(new WorldWind.StarFieldLayer(), {
-        category: "setting",
-        enabled: true,
-        displayName: "Stars"
-    });
+    // globe.addLayer(new WorldWind.StarFieldLayer(), {
+    //     category: "setting",
+    //     enabled: true,
+    //     displayName: "Stars"
+    // });
     globe.addLayer(new WorldWind.AtmosphereLayer(), {
         category: "setting",
         enabled: true,

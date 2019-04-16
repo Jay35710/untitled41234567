@@ -300,7 +300,7 @@ define([
         WmtsLayerCapabilities.assembleMetadata = function (element) { // TODO
             var result = {};
 
-            var link = element.getAttribute("xlink:href");
+            var link = "http://10.11.90.16:9084/" + element.getAttribute("xlink:href");
             if (link) {
                 result.url = link;
             }
@@ -353,7 +353,7 @@ define([
             result.format = element.getAttribute("format");
             result.minScaleDenominator = element.getAttribute("minScaleDenominator");
             result.maxScaleDenominator = element.getAttribute("maxScaleDenominator");
-            result.href = element.getAttribute("xlink:href");
+            result.href = "http://10.11.90.16:9084/" + element.getAttribute("xlink:href");
             result.width = element.getAttribute("width");
             result.height = element.getAttribute("height");
 
