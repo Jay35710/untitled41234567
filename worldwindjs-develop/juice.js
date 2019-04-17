@@ -389,10 +389,7 @@ requirejs(["./src/WorldWind"],  function(WorldWind) {
     // highlightAttributes.imageScale = 0.3;
     // placemarkC.highlightAttributes = highlightAttributes;
 
-    globe.addLayer(placemarkCLayer, {
-        category: "marker",
-        enabled: true,
-    });
+    globe.wwd.addLayer(placemarkCLayer);
 
 
 
@@ -510,27 +507,30 @@ requirejs(["./src/WorldWind"],  function(WorldWind) {
     globe.wwd.addEventListener("mousemove", popOverNew);
 
     var slider2 = document.getElementById("slider2");
-    var LayerToggle2= function(){
-        if(placemarkCLayer.enabled === true){
-            console.log("enabled");
-            slider2.onclick=function () {
-                placemarkCLayer.enabled = false
-            }
-        }
-        if (placemarkCLayer.enabled === false){
-            console.log("no");
-            slider2.onclick=function(){
-                placemarkCLayer.enabled = true
-            }
-        }
+    slider2.onclick = function(){
+        placemarkCLayer.enabled = !placemarkCLayer.enabled
     };
-    addEventListener("click", LayerToggle2);
+        // if(placemarkCLayer.enabled === true){
+        //     console.log("enabled");
+        //     slider2.onclick=function () {
+        //         placemarkCLayer.enabled = !placemarkCLayer.enabled
+        //     }
+        //     }
+        // };
+        // if (placemarkCLayer.enabled === false){
+        //     console.log("no");
+        //     slider2.onclick=function(){
+        //         placemarkCLayer.enabled = !placemarkCLayer.enabled
+        //     }
+
+
+
 
 
 
     //  http://cs.aworldbridgelabs.com:8080/geoserver/web/
     //  http://aworldbridgelabs.com:8080/geoserver/FatWMS/wms?service=WMS&version=1.1.0&request=GetMap&layers=FatWMS:pointlands&styles=&bbox=-105.370531,39.914352,-105.065309,40.217396&width=768&height=762&srs=EPSG:4269&format=application/openlayers
-    var serviceAddress = "http://10.11.90.16:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities";
+    var serviceAddress = "http://10.11.90.16:9084/http://10.11.90.16:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities";
     // Named layer displaying Average Temperature data
     var layerName = "FatWMS:giant_polygon";
     // Called asynchronously to parse and create the WMS layer
@@ -550,26 +550,37 @@ requirejs(["./src/WorldWind"],  function(WorldWind) {
         console.log("charllllllllie cai iiisss fffffaaaaatt");
 
         // Add the layers to WorldWind and update the layer manager
-        globe.addLayer(wmsLayer, {
-            category: "settings",
-            enabled: "true"
-        });
+        globe.wwd.addLayer(wmsLayer);
+
+        wmsLayer.enabled = false;
+        // globe.addLayer(wmsLayer, {
+        //     category: "settings",
+        //     enabled: "true"
+        // });
         console.log("char");
         var slider3 = document.getElementById("slider3");
-        var LayerToggle3 = function () {
-            if (wmsLayer.enabled === true) {
-                slider3.onclick = function () {
-                    wmsLayer.enabled = false
+        slider3.onclick = function(){
+            wmsLayer.enabled = !wmsLayer.enabled
+        }
+            // if (wmsLayer.enabled === true) {
+            //     slider3.onclick = function () {
+            //         wmsLayer.enabled = false
+            //
+            //     }
+            // }
+            // if (wmsLayer.enabled === false) {
+            //     slider3.onclick = function () {
+            //         wmsLayer.enabled = true
+            //     }
+            // }
 
-                }
-            }
-            if (wmsLayer.enabled === false) {
-                slider3.onclick = function () {
-                    wmsLayer.enabled = true
-                }
-            }
-        };
-        addEventListener("click", LayerToggle3);
+
+        // $(document).ready(function () {
+        //     $("#slider4").change(function () {
+        //         wmsLayer.enabled = !wmsLayer.enabled;
+        //         console.log("Layer toggled");
+        //     });
+        // });
     };
 
 
@@ -581,6 +592,7 @@ requirejs(["./src/WorldWind"],  function(WorldWind) {
     // var ajax = new XMLHttpRequest();
     // console.log(ajax);
     $.get(serviceAddress).done(createLayer).fail(logError);
+
     // $.ajax({
     //     type: "GET",
     //     crossOrigin: true,
@@ -623,6 +635,30 @@ requirejs(["./src/WorldWind"],  function(WorldWind) {
     // };
     //
     // $.get(serviceAddress2).done(createLayer2).fail(logError2());
+
+
+    var locations = [];
+    for (var i = 0; i < 200000; i++) {
+        locations.push(
+            new WorldWind.MeasuredLocation(
+                -89 + (179 * Math.random()),
+                -179 + (359 * Math.random()),
+                Math.ceil(1000 * Math.random())
+            )
+        );
+    }
+
+    // Add new HeatMap Layer with the points as the data source.
+    var heatMap = new WorldWind.HeatMapLayer("HeatMap", locations);
+    globe.wwd.addLayer(heatMap );
+
+    var slider4 = document.getElementById("slider4");
+    slider4.onclick = function(){
+        heatMap.enabled = !heatMap.enabled
+    };
+
+
+
 
     // Activate the Knockout bindings between our view models and the html
     let layersViewModel = new LayersViewModel(globe);
