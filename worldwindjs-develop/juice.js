@@ -656,7 +656,7 @@ requirejs(["./src/WorldWind"],  function(WorldWind) {
 
     var slider4 = document.getElementById("slider4");
     slider4.onclick = function(){
-        heatMap.enabled = !heatMap.enabled
+        heatMap.enabled = !heatMap.enabled;
         globe.wwd.redraw();
     };
 
